@@ -2,14 +2,12 @@ package edu.spring.boot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//@EnableAutoConfiguration
-//@Import(MyConfiguration.class)
-//@ComponentScan()
 @RestController
 @SpringBootApplication
 public class Application {
@@ -23,6 +21,9 @@ public class Application {
     @Autowired
     private MyMessage myMessage;
 
+    @Autowired
+    ApplicationArguments applicationArguments;
+
     @RequestMapping("/test")
     public String home() {
         return message;
@@ -31,7 +32,8 @@ public class Application {
 
     @RequestMapping("/")
     public String welcome() {
-        return "Welcome, your lucky number is " + myMessage.getMessageValue();
+        String value = applicationArguments.getOptionNames().iterator().next();
+        return "Welcome, your lucky number is " + myMessage.getMessageValue() + value;
     }
 
     public static void main(String[] args) {
