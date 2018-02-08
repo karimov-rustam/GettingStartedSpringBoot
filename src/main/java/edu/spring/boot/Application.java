@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 //@EnableAutoConfiguration
 //@Import(MyConfiguration.class)
 //@ComponentScan()
+@RestController
 @SpringBootApplication
 public class Application {
 
@@ -20,9 +20,18 @@ public class Application {
     @Autowired
     String message;
 
-    @RequestMapping("/")
+    @Autowired
+    private MyMessage myMessage;
+
+    @RequestMapping("/test")
     public String home() {
         return message;
+    }
+
+
+    @RequestMapping("/")
+    public String welcome() {
+        return "Welcome, your lucky number is " + myMessage.getMessageValue();
     }
 
     public static void main(String[] args) {
