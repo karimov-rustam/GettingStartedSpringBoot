@@ -1,8 +1,0 @@
-server:
-  port: 9000
-  context-path: /
-type: Framework
-name: Spring Boot ${type}
-
-my:
-  messageValue: ${random.value}
