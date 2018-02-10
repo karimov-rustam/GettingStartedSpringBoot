@@ -24,5 +24,8 @@ public class SpringBootCacheApplication implements CommandLineRunner {
         for (int i = 0; i < 10; i++) {
             System.out.println(tracker.getPrice("T"));
         }
+
+        System.out.println("Getting price with new method");
+        System.out.println(tracker.getPriceWithManager("T"));
     }
 }
