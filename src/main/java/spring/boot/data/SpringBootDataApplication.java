@@ -19,6 +19,18 @@ public class SpringBootDataApplication {
         return repo.findBySymbol(symbol);
     }
 
+    @RequestMapping("/stocks/create")
+    public String createStock() {
+        Stock stock = new Stock();
+        stock.setCeo("Rustam");
+        stock.setCompanyName("Company Name");
+        stock.setSymbol("CN");
+        stock.setStockId(5);
+        stock.setPrice(5.0d);
+        repo.save(stock);
+        return "created";
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDataApplication.class, args);
     }
